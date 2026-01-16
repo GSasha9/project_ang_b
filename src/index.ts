@@ -1,6 +1,8 @@
 import { $log } from '@tsed/logger';
 import { PlatformExpress } from '@tsed/platform-express';
 import { Server } from './Server.js';
+import 'reflect-metadata';
+import { AppDataSource } from './data-source.js';
 
 const SIG_EVENTS = [
   'beforeExit',
@@ -19,6 +21,9 @@ const SIG_EVENTS = [
 ];
 
 try {
+  await AppDataSource.initialize();
+  console.log('Database connected');
+
   const platform = await PlatformExpress.bootstrap(Server);
   await platform.listen();
 
