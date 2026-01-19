@@ -2,11 +2,10 @@ import { Injectable } from '@tsed/di';
 import { UserModel } from 'src/models/UserModel.js';
 import { AppDataSource } from 'src/data-source.js';
 import { UserEntity } from 'src/entities/UserEntity.js';
-import { NotFound } from '@tsed/exceptions';
+import { Conflict, NotFound } from '@tsed/exceptions';
 
 @Injectable()
 export class UserService {
-  private users: UserModel[];
   dbUsers = AppDataSource.getRepository(UserEntity);
 
   async getUserByEmail(email: string) {
@@ -27,6 +26,14 @@ export class UserService {
       email: user.email,
       password: user.password,
     };
+
+    const existedUser = await this.dbUsers.findOneBy({
+      email: newUser.email,
+    });
+
+    if (existedUser) {
+      throw new Conflict('user already registered');
+    }
 
     const savedUser = await this.dbUsers.save(newUser);
 
