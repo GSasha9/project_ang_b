@@ -12,6 +12,7 @@ export class BlogPostModel {
     postTime: string;
 
     @Optional()
+    @Property(String)
     img?: string | null;
 
     @Required()

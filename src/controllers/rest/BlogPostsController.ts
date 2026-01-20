@@ -1,5 +1,6 @@
 import { Controller } from "@tsed/di";
-import { Get, Returns } from "@tsed/schema";
+import { BodyParams } from "@tsed/platform-params";
+import { Get, Post, Returns } from "@tsed/schema";
 import { BlogPostModel } from "src/models/BlogPostModel.js";
 import { BlogPostService } from "src/services/BlogPostService.js";
 
@@ -12,6 +13,13 @@ export class BlogPostsController {
     @(Returns(404).Description('No posts found'))
     getAll() {
         return this.service.getAllPosts();
+    }
+
+    @Post('/')
+    @Returns(201, BlogPostModel)
+    @(Returns(400).Description('Invalid post data'))
+    async createPost(@BodyParams() post:BlogPostModel) {
+        return this.service.createPost(post)
     }
 
 }

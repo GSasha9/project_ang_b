@@ -13,7 +13,7 @@ export class BlogPostEntity {
     postTime: string
 
     @Column('nvarchar', {length: 255, nullable: true})
-    img: string;
+    img?: string | null;
 
     @Column('nvarchar', {length: 255})
     title: string;
