@@ -20,6 +20,18 @@ export class UserService {
     return existedUser;
   }
 
+  async getUserById(id: number) {
+    const existedUser = await this.dbUsers.findOneBy({
+      id: id,
+    });
+
+    if (!existedUser) {
+      throw new NotFound("User doesn't exist");
+    }
+
+    return existedUser;
+  }
+
   async create(user: UserModel) {
     const newUser: Partial<UserEntity> = {
       name: user.name,

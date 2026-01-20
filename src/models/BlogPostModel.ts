@@ -22,5 +22,14 @@ export class BlogPostModel {
     text: string;
 
     @Optional()
-    authorId?: string | null;
+    @Property(Number)
+    authorId?: number | null
+
+    @Optional()
+    author?: {
+        id: number,
+        email: string,
+        name: string
+    } | null
+    
 }

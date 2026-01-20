@@ -13,6 +13,13 @@ export class UsersController {
     return this.service.getUserByEmail(email);
   }
 
+  @Get('/')
+  @Returns(200, UserModel)
+  @(Returns(404).Description('User not found'))
+  getById(@QueryParams('id') id: number) {
+    return this.service.getUserById(id);
+  }
+
   @Post('/')
   @Returns(201, UserModel)
   @(Returns(409).Description('User already exists'))

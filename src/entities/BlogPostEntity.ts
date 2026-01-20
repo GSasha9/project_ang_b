@@ -1,5 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { UserEntity } from "./UserEntity.js";
+import { Optional } from "@tsed/schema";
 
 @Entity('blogPosts')
 export class BlogPostEntity {
@@ -21,10 +22,13 @@ export class BlogPostEntity {
     @Column('nvarchar', {length: 'max'})
     text: string;
 
+    @Column('int', {nullable: true})
+    authorId: number | null;
+
     @ManyToOne(() => UserEntity, {
         nullable: true,
         onDelete: 'SET NULL'
     })
     @JoinColumn({name: 'authorId'})
-    author?: UserEntity | null
+    author: UserEntity | null
 }
