@@ -16,7 +16,7 @@ export class UsersController {
   @Get('/')
   @Returns(200, UserModel)
   @(Returns(404).Description('User not found'))
-  getById(@QueryParams('id') id: number) {
+  async getById(@QueryParams('id') id: number) {
     return this.service.getUserById(id);
   }
 

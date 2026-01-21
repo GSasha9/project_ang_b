@@ -11,7 +11,7 @@ export class BlogPostsController {
   @Get('/')
   @Returns(200, BlogPostModel)
   @(Returns(404).Description('No posts found'))
-  getAll() {
+  async getAll() {
     return this.service.getAllPosts();
   }
 
