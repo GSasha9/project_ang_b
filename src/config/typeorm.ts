@@ -15,6 +15,6 @@ export const typeormConfig: DataSourceOptions = {
 
   entities: [`${process.cwd()}/src/entities/**/*.ts`],
 
-  synchronize: true,
+  synchronize: false,
   logging: true,
 };

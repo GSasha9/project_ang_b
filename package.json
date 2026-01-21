@@ -7,9 +7,13 @@
     "barrels": "barrels",
     "start": "npm run barrels && nodemon src/index.ts",
     "start:prod": "cross-env NODE_ENV=production node --import @swc-node/register/esm-register src/index.js",
-    "lint": "eslint 'src/**/*.ts'",
-    "lint:fix": "eslint 'src/**/*.ts' --fix",
-    "format": "prettier --write 'src/**/*.ts'"
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "typeorm": "typeorm-ts-node-esm",
+    "migration:generate": "npm run typeorm -- migration:generate src/migrations/Init -d src/data-source.ts",
+    "migration:run": "npm run typeorm -- migration:run -d src/data-source.ts",
+    "migration:revert": "npm run typeorm -- migration:revert -d src/data-source.ts"
   },
   "dependencies": {
     "@swc-node/register": "^1.11.1",
@@ -56,6 +60,8 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
+    "@angular-eslint/eslint-plugin": "^21.1.0",
+    "@eslint/eslintrc": "^3.3.3",
     "@tsed/cli-plugin-passport": "6.6.3",
     "@tsed/cli-plugin-typeorm": "6.6.3",
     "@tsed/common": "^8.23.0",
@@ -68,13 +74,15 @@
     "@types/method-override": "^3.0.0",
     "@types/multer": "^2.0.0",
     "@types/node": "^25.0.8",
-    "@typescript-eslint/eslint-plugin": "^8.53.0",
-    "@typescript-eslint/parser": "^8.53.0",
+    "@typescript-eslint/eslint-plugin": "^8.53.1",
+    "@typescript-eslint/parser": "^8.53.1",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "nodemon": "^3.1.11",
     "prettier": "^3.8.0",
+    "ts-node": "^10.9.2",
     "tslib": "^2.8.1",
     "typeorm": "^0.3.28"
   },

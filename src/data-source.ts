@@ -7,4 +7,5 @@ import { BlogPostEntity } from './entities/BlogPostEntity.js';
 export const AppDataSource = new DataSource({
   ...typeormConfig,
   entities: [UserEntity, BlogPostEntity],
+  migrations: ['src/migrations/*.ts'],
 });
