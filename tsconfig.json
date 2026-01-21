@@ -2,12 +2,9 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "noEmit": true
+    "composite": true,
+    "declaration": true
   },
-  "include": [],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+  "include": ["src/**/*.ts", "*.cjs"],
+  "exclude": ["node_modules"]
 }

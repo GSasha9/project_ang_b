@@ -1,35 +1,37 @@
-import { Groups, Optional, Property, Required } from "@tsed/schema";
+import { Groups, Optional, Property, Required } from '@tsed/schema';
+import { Configuration } from '@tsed/di';
+import '@tsed/ajv';
 
+@Configuration()
 export class BlogPostModel {
-    @Property()
-    @Groups('!creation')
-    id: string;
+  @Property()
+  @Groups('!creation')
+  id: string;
 
-    @Required()
-    postDate: Date;
+  @Required()
+  postDate: Date;
 
-    @Required()
-    postTime: string;
+  @Required()
+  postTime: string;
 
-    @Optional()
-    @Property(String)
-    img?: string | null;
+  @Optional()
+  @Property(String)
+  img?: string | null;
 
-    @Required()
-    title: string;
+  @Required()
+  title: string;
 
-    @Required()
-    text: string;
+  @Required()
+  text: string;
 
-    @Optional()
-    @Property(Number)
-    authorId?: number | null
+  @Optional()
+  @Property(Number)
+  authorId?: number | null;
 
-    @Optional()
-    author?: {
-        id: number,
-        email: string,
-        name: string
-    } | null
-    
+  @Optional()
+  author?: {
+    id: number;
+    email: string;
+    name: string;
+  } | null;
 }
